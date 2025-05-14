@@ -1,424 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESG Mission: 永續挑戰</title>
-  <style>
-    body {
-      font-family: "Noto Sans", Arial, sans-serif;
-      background: #f0f4f8;
-      margin: 0;
-      padding: 2rem 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-      box-sizing: border-box;
-    }
-    .quiz-container {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      width: 90%;
-      max-width: 700px;
-      position: relative;
-      transition: all 0.5s ease;
-    }
-    h1 {
-      text-align: center;
-      color: #005BAC;
-    }
-    .question {
-      margin: 1rem 0;
-      font-size: 1.1rem;
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeIn 0.5s forwards;
-    }
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .options button {
-      display: block;
-      width: 100%;
-      margin: 0.5rem 0;
-      padding: 0.75rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background: #e8f0fe;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-    .options button:hover {
-      background: #d0e2ff;
-      transform: scale(1.02);
-    }
-    #result {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      white-space: pre-line;
-    }
-    #lang-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: #005BAC;
-      color: white;
-      border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    #cta-button {
-      display: block;
-      margin: 1rem auto 0;
-      padding: 0.6rem 1.2rem;
-      background-color: #005BAC;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-      text-decoration: none;
-    }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>ESG Mission: 永續挑戰</title>
+ <style>
+   body {
+     font-family: "Noto Sans", Arial, sans-serif;
+     background: #f0f4f8;
+     margin: 0;
+     padding: 2rem 1rem;
+     display: flex;
+     justify-content: center;
+     align-items: flex-start;
+     min-height: 100vh;
+     box-sizing: border-box;
+   }
+   .quiz-container {
+     background: white;
+     padding: 2rem;
+     border-radius: 12px;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+     width: 90%;
+     max-width: 700px;
+     position: relative;
+     transition: all 0.5s ease;
+   }
+   h1 {
+     text-align: center;
+     color: #005BAC;
+   }
+   .question {
+     margin: 1rem 0;
+     font-size: 1.1rem;
+     opacity: 0;
+     transform: translateY(10px);
+     animation: fadeIn 0.5s forwards;
+   }
+   @keyframes fadeIn {
+     to {
+       opacity: 1;
+       transform: translateY(0);
+     }
+   }
+   .options button {
+     display: block;
+     width: 100%;
+     margin: 0.5rem 0;
+     padding: 0.75rem;
+     font-size: 1rem;
+     border: 1px solid #ccc;
+     border-radius: 8px;
+     background: #e8f0fe;
+     cursor: pointer;
+     transition: background 0.3s ease, transform 0.2s ease;
+   }
+   .options button:hover {
+     background: #d0e2ff;
+     transform: scale(1.02);
+   }
+   #result {
+     text-align: center;
+     margin-top: 1rem;
+     font-size: 1.1rem;
+     white-space: pre-line;
+   }
+   #lang-toggle {
+     position: absolute;
+     top: 20px;
+     right: 20px;
+     background: #005BAC;
+     color: white;
+     border: none;
+     padding: 0.4rem 0.8rem;
+     border-radius: 6px;
+     cursor: pointer;
+   }
+   #cta-button {
+     display: block;
+     margin: 1rem auto 0;
+     padding: 0.6rem 1.2rem;
+     background-color: #005BAC;
+     color: white;
+     border: none;
+     border-radius: 6px;
+     font-size: 1rem;
+     cursor: pointer;
+     text-decoration: none;
+   }
+ </style>
 </head>
 <body>
-  <div class="quiz-container">
-    <button id="lang-toggle">切換語言 / Switch Language</button>
-    <h1 id="quiz-title">ESG 永續挑戰</h1>
-    <div id="question-container">
-      <div class="question" id="question"></div>
-      <div class="options" id="options"></div>
-    </div>
-    <div id="result"></div>
-    <a href="https://www.chiconypower.com/zh-tw/ESG/index" id="cta-button" target="_blank" style="display:none">了解更多群光電能永續行動</a>
-  </div>
+ <div class="quiz-container">
+   <button id="lang-toggle">切換語言 / Switch Language</button>
+   <h1 id="quiz-title">ESG 永續挑戰</h1>
+   <div id="question-container">
+     <div class="question" id="question"></div>
+     <div class="options" id="options"></div>
+   </div>
+   <div id="result"></div>
+   <a href="https://www.chiconypower.com/zh-tw/ESG/index" id="cta-button" target="_blank" style="display:none">了解更多群光電能永續行動</a>
+ </div>
+ 
+ <script>
+   const fullQuestionPool = [
+     // 題目6 - CSR
+     {
+       zh: {
+         question: '「企業社會責任 (CSR)」指的是企業應該關注哪些面向的發展？',
+         options: ['僅追求股東利潤最大化。', '除了追求利潤外，也應兼顧對員工、消費者、社區及環境的責任。', '專注於慈善捐款。', '只需遵守法律規範即可。'],
+         answer: 1,
+         explanation: 'CSR 指企業除營利外，也應承擔對利害關係人與環境的責任。'
+       },
+       en: {
+         question: 'What does Corporate Social Responsibility (CSR) entail?',
+         options: ['Only maximizing shareholder profit.', 'Pursuing profit while being responsible to employees, consumers, the community, and the environment.', 'Focusing solely on donations.', 'Just obeying laws.'],
+         answer: 1,
+         explanation: 'CSR means businesses must consider their broader impact on society and the environment in addition to profit.'
+       }
+     },
+     // 題目7 - Fair Trade
+     {
+       zh: {
+         question: '下列何者屬於「公平貿易 (Fair Trade)」的原則？',
+         options: ['以最低價格收購產品。', '確保生產者獲得合理報酬，並在友善環境下生產。', '鼓勵單一種植以提高效率。', '僅限農產品交易。'],
+         answer: 1,
+         explanation: '公平貿易強調合理薪酬與環境友善的生產方式。'
+       },
+       en: {
+         question: 'Which of the following is a Fair Trade principle?',
+         options: ['Buy products at lowest prices.', 'Ensure fair wages and eco-friendly conditions for producers.', 'Encourage monoculture.', 'Only applies to agriculture.'],
+         answer: 1,
+         explanation: 'Fair Trade supports fair pay and sustainable production practices in developing regions.'
+       }
+     },
+     // 題目8 - DEI
+     {
+       zh: {
+         question: '「多元、公平與共融 (DEI)」在企業永續發展中的意義為何？',
+         options: ['僅指員工背景多元。', '創造一個尊重差異與機會均等的職場。', '主要為符合法規。', '僅適用於大型企業。'],
+         answer: 1,
+         explanation: 'DEI 是現代企業重視人才與平等發展的重要永續指標。'
+       },
+       en: {
+         question: 'What does DEI mean in sustainable business?',
+         options: ['Only about diverse backgrounds.', 'Creating inclusive, respectful, and fair workplaces.', 'Just legal compliance.', 'Only for big firms.'],
+         answer: 1,
+         explanation: 'DEI fosters fairness, inclusion, and diversity, essential for corporate sustainability.'
+       }
+     },
+     // 題目9 - 社區參與
+     {
+       zh: {
+         question: '「社區參與」對企業永續發展有何重要性？',
+         options: ['僅為形象公關。', '促進信任、了解在地需求並創造新商機。', '增加營運成本。', '只需捐款。'],
+         answer: 1,
+         explanation: '企業參與社區活動有助建立信任與發掘創新合作機會。'
+       },
+       en: {
+         question: 'Why is community engagement important for sustainability?',
+         options: ['Just for PR.', 'To build trust, understand needs, and create innovation.', 'Too costly.', 'Only requires donations.'],
+         answer: 1,
+         explanation: 'Engaging with communities fosters trust and shared value creation.'
+       }
+     },
+     // 題目10 - GRI 準則
+     {
+       zh: {
+         question: '永續報告書中的「GRI準則」是指什麼？',
+         options: ['財務會計準則', '全球報告倡議組織的報告框架', 'ISO 的標準', '公司內部規範'],
+         answer: 1,
+         explanation: 'GRI 是協助企業揭露經濟、環境、社會績效的報告標準。'
+       },
+       en: {
+         question: 'What is GRI in sustainability reports?',
+         options: ['Financial standards.', 'Global Reporting Initiative guidelines.', 'ISO standards.', 'Internal rules.'],
+         answer: 1,
+         explanation: 'GRI helps organizations report on ESG performance and impacts.'
+       }
+     },
+     // 題目11 - 綠色金融
+     {
+       zh: {
+         question: '「綠色金融 (Green Finance)」指的是什麼？',
+         options: ['投資於植物產業。', '支持環境改善與永續發展的金融服務。', '綠色存摺。', '政府補助。'],
+         answer: 1,
+         explanation: '綠色金融引導資金投向環保與永續項目。'
+       },
+       en: {
+         question: 'What is Green Finance?',
+         options: ['Investment in plant industries.', 'Finance supporting environmental and sustainable goals.', 'Green passbooks.', 'Government subsidies.'],
+         answer: 1,
+         explanation: 'Green Finance channels funds toward eco-friendly and sustainable ventures.'
+       }
+     },
+     // 題目12 - 影響力投資
+     {
+       zh: {
+         question: '「影響力投資 (Impact Investing)」的目標是什麼？',
+         options: ['追求最高報酬。', '兼顧報酬與正面社會／環境影響。', '非營利捐贈。', '高風險策略。'],
+         answer: 1,
+         explanation: '影響力投資兼顧回報與可衡量的永續效益。'
+       },
+       en: {
+         question: 'What is the goal of Impact Investing?',
+         options: ['Maximize profits.', 'Pursue returns with positive ESG impact.', 'Non-profit donations.', 'High-risk strategy.'],
+         answer: 1,
+         explanation: 'Impact investing aims to generate financial returns along with measurable ESG benefits.'
+       }
+     },
+     // 題目13 - 共享經濟
+     {
+       zh: {
+         question: '何謂「共享經濟 (Sharing Economy)」？',
+         options: ['政府分配資源。', '透過平台分享閒置資源。', '傳統租賃業。', '分享財產。'],
+         answer: 1,
+         explanation: '共享經濟透過平台共享資源提升效率與永續。'
+       },
+       en: {
+         question: 'What is Sharing Economy?',
+         options: ['Government distribution.', 'Platform-based resource sharing.', 'Traditional rental.', 'Sharing all assets.'],
+         answer: 1,
+         explanation: 'The sharing economy uses platforms to connect underutilized resources with users.'
+       }
+     },
+     // 題目14 - 供應鏈永續
+     {
+       zh: {
+         question: '「供應鏈永續管理」為何重要？',
+         options: ['只壓低價格。', '確保供應商符合ESG，降低風險。', '僅限大企業。', '會提高成本。'],
+         answer: 1,
+         explanation: '供應鏈若不永續，將影響品牌聲譽與營運穩定。'
+       },
+       en: {
+         question: 'Why is sustainable supply chain important?',
+         options: ['Only cut prices.', 'Ensure ESG compliance to reduce risk.', 'Only big firms.', 'Increases cost.'],
+         answer: 1,
+         explanation: 'Unsustainable suppliers may damage brand and increase operational risks.'
+       }
+     },
+     // 題目15 - HDI
+     {
+       zh: {
+         question: '下列何者為衡量國家福祉的指標？',
+         options: ['股市指數', '人類發展指數 (HDI)', '外匯存底', '通膨率'],
+         answer: 1,
+         explanation: 'HDI 包含壽命、教育與所得，是綜合評估福祉的指標。'
+       },
+       en: {
+         question: 'Which is a good measure of national well-being?',
+         options: ['Stock index', 'Human Development Index (HDI)', 'Forex reserve', 'Inflation'],
+         answer: 1,
+         explanation: 'HDI combines life expectancy, education, and income to assess well-being.'
+       }
+     },
+     // 題目16 - 責任消費
+     {
+       zh: {
+         question: '何者為責任消費與生產的實踐方式？',
+         options: ['常換新產品。', '購買在地當季食材並減少浪費。', '選擇過度包裝。', '大量購物促進經濟。'],
+         answer: 1,
+         explanation: '責任消費強調減廢、支持本地與資源永續利用。'
+       },
+       en: {
+         question: 'What reflects responsible consumption?',
+         options: ['Always buying new goods.', 'Buying local, seasonal foods and avoiding waste.', 'Choosing overpackaged products.', 'Shopping to boost economy.'],
+         answer: 1,
+         explanation: 'Buying locally and reducing waste is key to sustainable consumption.'
+       }
+     },
+     // 題目17 - 節能
+     {
+       zh: {
+         question: '下列何者不屬節能行為？',
+         options: ['關燈拔插頭', '選節能產品', '冷氣設18°C', '用自然光'],
+         answer: 2,
+         explanation: '設定冷氣太低反而耗電，建議26-28°C較節能。'
+       },
+       en: {
+         question: 'Which is NOT energy-saving?',
+         options: ['Turn off lights/unplug', 'Use efficient appliances', 'Set AC to 18°C', 'Use natural light'],
+         answer: 2,
+         explanation: 'AC at 18°C consumes excessive power; 26-28°C is more efficient.'
+       }
+     },
+     // 題目18 - 綠色交通
+     {
+       zh: {
+         question: '何謂「綠色交通」？',
+         options: ['開綠色車', '使用低污染、友善環境的交通方式', '只有綠燈時開車', '禁止交通工具'],
+         answer: 1,
+         explanation: '綠色交通是指步行、騎車、大眾運輸與電動車等低碳交通。'
+       },
+       en: {
+         question: 'What is Green Transport?',
+         options: ['Driving a green car', 'Eco-friendly low-emission travel', 'Driving only on green lights', 'Banning transport'],
+         answer: 1,
+         explanation: 'Green transport includes walking, biking, transit, and EVs.'
+       }
+     },
+     // 題目19 - 減塑
+     {
+       zh: {
+         question: '下列何者最有效減少塑膠使用？',
+         options: ['全部回收', '自備環保用品並減量', '買可分解塑膠', '焚燒處理'],
+         answer: 1,
+         explanation: '源頭減量與拒絕一次性用品是最有效的減塑方式。'
+       },
+       en: {
+         question: 'Which best reduces plastic use?',
+         options: ['Recycle all', 'Use own cups/bags and reduce', 'Buy degradable plastic', 'Burn waste'],
+         answer: 1,
+         explanation: 'Source reduction and reusable items best reduce plastic pollution.'
+       }
+     },
+     // 題目20 - 永續旅遊
+     {
+       zh: {
+         question: '「永續旅遊」的核心理念為何？',
+         options: ['只去自然區', '減少對環境與文化的衝擊並促進地方發展', '最便宜旅遊', '避免與居民互動'],
+         answer: 1,
+         explanation: '永續旅遊強調尊重當地文化與生態、促進經濟。'
+       },
+       en: {
+         question: 'What is the goal of sustainable tourism?',
+         options: ['Only visit nature.', 'Minimize impact and support local development.', 'Cheapest travel.', 'Avoid locals.'],
+         answer: 1,
+         explanation: 'Sustainable tourism aims to benefit local communities and protect environments.'
+       }
+     }
+   ];
+ 
+   const selectedQuestions = fullQuestionPool.sort(() => 0.5 - Math.random()).slice(0, 10);
+   let currentLang = 'zh';
+   let currentQuestion = 0;
+   let score = 0;
+ 
+   const langToggle = document.getElementById('lang-toggle');
+   const questionEl = document.getElementById('question');
+   const optionsEl = document.getElementById('options');
+   const resultEl = document.getElementById('result');
+   const ctaBtn = document.getElementById('cta-button');
+ 
+   langToggle.addEventListener('click', () => {
+     currentLang = currentLang === 'zh' ? 'en' : 'zh';
+     loadQuestion();
+   });
+ 
+   function loadQuestion() {
+     // 在這裡添加一個保護，以防 selectedQuestions 是空的或不夠長
+     if (selectedQuestions.length === 0 || !selectedQuestions[currentQuestion]) {
+       console.error("Error: Question pool is empty or currentQuestion index is out of bounds.");
+       // 可以選擇在這裡顯示一個錯誤訊息給使用者
+       questionEl.textContent = currentLang === 'zh' ? '題目載入錯誤，請稍後再試。' : 'Error loading questions. Please try again later.';
+       optionsEl.innerHTML = '';
+       return;
+     }
+     const q = selectedQuestions[currentQuestion][currentLang];
+     questionEl.textContent = `${currentQuestion + 1}. ${q.question}`;
+     optionsEl.innerHTML = '';
+     q.options.forEach((opt, idx) => {
+       const btn = document.createElement('button');
+       btn.textContent = opt;
+       btn.onclick = () => selectAnswer(idx);
+       optionsEl.appendChild(btn);
+     });
+   }
+ 
+   function selectAnswer(index) {
+     // 在這裡添加一個保護
+     if (selectedQuestions.length === 0 || !selectedQuestions[currentQuestion]) {
+        console.error("Error: Question pool is empty or currentQuestion index is out of bounds during selectAnswer.");
+        return;
+     }
+     const q = selectedQuestions[currentQuestion][currentLang];
+     const explanation = document.createElement('p');
+     explanation.style.marginTop = '0.5rem';
+     explanation.style.fontStyle = 'italic';
+ 
+     if (index === q.answer) {
+       score++;
+       explanation.textContent = currentLang === 'zh' ? '✔️ 回答正確！' : '✔️ Correct answer!';
+     } else {
+       explanation.textContent = currentLang === 'zh' ? '❌ 回答錯誤。' : '❌ Incorrect answer.';
+     }
+ 
+     const detail = document.createElement('p');
+     detail.textContent = q.explanation;
+     detail.style.marginTop = '0.2rem';
+ 
+     optionsEl.innerHTML = '';
+     optionsEl.appendChild(explanation);
+     optionsEl.appendChild(detail);
+ 
+     setTimeout(() => {
+       currentQuestion++;
+       if (currentQuestion < selectedQuestions.length) {
+         loadQuestion();
+       } else {
+         showResult();
+       }
+     }, 2000); // 我稍微延長了一點時間 (2秒)，讓使用者有時間看解釋
+   }
+ 
+   function showResult() {
+     let message = '';
+     let overview = '';
+     // 在這裡添加一個保護
+     if (selectedQuestions.length === 0 && currentLang === 'zh') {
+        message = '沒有題目可以顯示結果。';
+     } else if (selectedQuestions.length === 0 && currentLang === 'en') {
+        message = 'No questions to show results for.';
+     } else {
+        selectedQuestions.forEach((qData, idx) => { // 改用 qData 避免與外部 q 衝突
+            // 確認 qData 和 qData[currentLang] 是否存在
+            if (qData && qData[currentLang]) {
+                const qText = qData[currentLang].question;
+                const correct = qData[currentLang].options[qData[currentLang].answer];
+                overview += `\n${idx + 1}. ${qText}\n✔ 正確答案：${correct}`;
+            }
+        });
 
-  <script>
-    const fullQuestionPool = [
-  // 已有題目（前5題）...
-  // 題目6 - CSR
-  {
-    zh: {
-      question: '「企業社會責任 (CSR)」指的是企業應該關注哪些面向的發展？',
-      options: ['僅追求股東利潤最大化。', '除了追求利潤外，也應兼顧對員工、消費者、社區及環境的責任。', '專注於慈善捐款。', '只需遵守法律規範即可。'],
-      answer: 1,
-      explanation: 'CSR 指企業除營利外，也應承擔對利害關係人與環境的責任。'
-    },
-    en: {
-      question: 'What does Corporate Social Responsibility (CSR) entail?',
-      options: ['Only maximizing shareholder profit.', 'Pursuing profit while being responsible to employees, consumers, the community, and the environment.', 'Focusing solely on donations.', 'Just obeying laws.'],
-      answer: 1,
-      explanation: 'CSR means businesses must consider their broader impact on society and the environment in addition to profit.'
-    }
-  },
-  // 題目7 - Fair Trade
-  {
-    zh: {
-      question: '下列何者屬於「公平貿易 (Fair Trade)」的原則？',
-      options: ['以最低價格收購產品。', '確保生產者獲得合理報酬，並在友善環境下生產。', '鼓勵單一種植以提高效率。', '僅限農產品交易。'],
-      answer: 1,
-      explanation: '公平貿易強調合理薪酬與環境友善的生產方式。'
-    },
-    en: {
-      question: 'Which of the following is a Fair Trade principle?',
-      options: ['Buy products at lowest prices.', 'Ensure fair wages and eco-friendly conditions for producers.', 'Encourage monoculture.', 'Only applies to agriculture.'],
-      answer: 1,
-      explanation: 'Fair Trade supports fair pay and sustainable production practices in developing regions.'
-    }
-  },
-  // 題目8 - DEI
-  {
-    zh: {
-      question: '「多元、公平與共融 (DEI)」在企業永續發展中的意義為何？',
-      options: ['僅指員工背景多元。', '創造一個尊重差異與機會均等的職場。', '主要為符合法規。', '僅適用於大型企業。'],
-      answer: 1,
-      explanation: 'DEI 是現代企業重視人才與平等發展的重要永續指標。'
-    },
-    en: {
-      question: 'What does DEI mean in sustainable business?',
-      options: ['Only about diverse backgrounds.', 'Creating inclusive, respectful, and fair workplaces.', 'Just legal compliance.', 'Only for big firms.'],
-      answer: 1,
-      explanation: 'DEI fosters fairness, inclusion, and diversity, essential for corporate sustainability.'
-    }
-  },
-  // 題目9 - 社區參與
-  {
-    zh: {
-      question: '「社區參與」對企業永續發展有何重要性？',
-      options: ['僅為形象公關。', '促進信任、了解在地需求並創造新商機。', '增加營運成本。', '只需捐款。'],
-      answer: 1,
-      explanation: '企業參與社區活動有助建立信任與發掘創新合作機會。'
-    },
-    en: {
-      question: 'Why is community engagement important for sustainability?',
-      options: ['Just for PR.', 'To build trust, understand needs, and create innovation.', 'Too costly.', 'Only requires donations.'],
-      answer: 1,
-      explanation: 'Engaging with communities fosters trust and shared value creation.'
-    }
-  },
-  // 題目10 - GRI 準則
-  {
-    zh: {
-      question: '永續報告書中的「GRI準則」是指什麼？',
-      options: ['財務會計準則', '全球報告倡議組織的報告框架', 'ISO 的標準', '公司內部規範'],
-      answer: 1,
-      explanation: 'GRI 是協助企業揭露經濟、環境、社會績效的報告標準。'
-    },
-    en: {
-      question: 'What is GRI in sustainability reports?',
-      options: ['Financial standards.', 'Global Reporting Initiative guidelines.', 'ISO standards.', 'Internal rules.'],
-      answer: 1,
-      explanation: 'GRI helps organizations report on ESG performance and impacts.'
-    }
-  },
-  // 題目11 - 綠色金融
-  {
-    zh: {
-      question: '「綠色金融 (Green Finance)」指的是什麼？',
-      options: ['投資於植物產業。', '支持環境改善與永續發展的金融服務。', '綠色存摺。', '政府補助。'],
-      answer: 1,
-      explanation: '綠色金融引導資金投向環保與永續項目。'
-    },
-    en: {
-      question: 'What is Green Finance?',
-      options: ['Investment in plant industries.', 'Finance supporting environmental and sustainable goals.', 'Green passbooks.', 'Government subsidies.'],
-      answer: 1,
-      explanation: 'Green Finance channels funds toward eco-friendly and sustainable ventures.'
-    }
-  },
-  // 題目12 - 影響力投資
-  {
-    zh: {
-      question: '「影響力投資 (Impact Investing)」的目標是什麼？',
-      options: ['追求最高報酬。', '兼顧報酬與正面社會／環境影響。', '非營利捐贈。', '高風險策略。'],
-      answer: 1,
-      explanation: '影響力投資兼顧回報與可衡量的永續效益。'
-    },
-    en: {
-      question: 'What is the goal of Impact Investing?',
-      options: ['Maximize profits.', 'Pursue returns with positive ESG impact.', 'Non-profit donations.', 'High-risk strategy.'],
-      answer: 1,
-      explanation: 'Impact investing aims to generate financial returns along with measurable ESG benefits.'
-    }
-  },
-  // 題目13 - 共享經濟
-  {
-    zh: {
-      question: '何謂「共享經濟 (Sharing Economy)」？',
-      options: ['政府分配資源。', '透過平台分享閒置資源。', '傳統租賃業。', '分享財產。'],
-      answer: 1,
-      explanation: '共享經濟透過平台共享資源提升效率與永續。'
-    },
-    en: {
-      question: 'What is Sharing Economy?',
-      options: ['Government distribution.', 'Platform-based resource sharing.', 'Traditional rental.', 'Sharing all assets.'],
-      answer: 1,
-      explanation: 'The sharing economy uses platforms to connect underutilized resources with users.'
-    }
-  },
-  // 題目14 - 供應鏈永續
-  {
-    zh: {
-      question: '「供應鏈永續管理」為何重要？',
-      options: ['只壓低價格。', '確保供應商符合ESG，降低風險。', '僅限大企業。', '會提高成本。'],
-      answer: 1,
-      explanation: '供應鏈若不永續，將影響品牌聲譽與營運穩定。'
-    },
-    en: {
-      question: 'Why is sustainable supply chain important?',
-      options: ['Only cut prices.', 'Ensure ESG compliance to reduce risk.', 'Only big firms.', 'Increases cost.'],
-      answer: 1,
-      explanation: 'Unsustainable suppliers may damage brand and increase operational risks.'
-    }
-  },
-  // 題目15 - HDI
-  {
-    zh: {
-      question: '下列何者為衡量國家福祉的指標？',
-      options: ['股市指數', '人類發展指數 (HDI)', '外匯存底', '通膨率'],
-      answer: 1,
-      explanation: 'HDI 包含壽命、教育與所得，是綜合評估福祉的指標。'
-    },
-    en: {
-      question: 'Which is a good measure of national well-being?',
-      options: ['Stock index', 'Human Development Index (HDI)', 'Forex reserve', 'Inflation'],
-      answer: 1,
-      explanation: 'HDI combines life expectancy, education, and income to assess well-being.'
-    }
-  },
-  // 題目16 - 責任消費
-  {
-    zh: {
-      question: '何者為責任消費與生產的實踐方式？',
-      options: ['常換新產品。', '購買在地當季食材並減少浪費。', '選擇過度包裝。', '大量購物促進經濟。'],
-      answer: 1,
-      explanation: '責任消費強調減廢、支持本地與資源永續利用。'
-    },
-    en: {
-      question: 'What reflects responsible consumption?',
-      options: ['Always buying new goods.', 'Buying local, seasonal foods and avoiding waste.', 'Choosing overpackaged products.', 'Shopping to boost economy.'],
-      answer: 1,
-      explanation: 'Buying locally and reducing waste is key to sustainable consumption.'
-    }
-  },
-  // 題目17 - 節能
-  {
-    zh: {
-      question: '下列何者不屬節能行為？',
-      options: ['關燈拔插頭', '選節能產品', '冷氣設18°C', '用自然光'],
-      answer: 2,
-      explanation: '設定冷氣太低反而耗電，建議26-28°C較節能。'
-    },
-    en: {
-      question: 'Which is NOT energy-saving?',
-      options: ['Turn off lights/unplug', 'Use efficient appliances', 'Set AC to 18°C', 'Use natural light'],
-      answer: 2,
-      explanation: 'AC at 18°C consumes excessive power; 26-28°C is more efficient.'
-    }
-  },
-  // 題目18 - 綠色交通
-  {
-    zh: {
-      question: '何謂「綠色交通」？',
-      options: ['開綠色車', '使用低污染、友善環境的交通方式', '只有綠燈時開車', '禁止交通工具'],
-      answer: 1,
-      explanation: '綠色交通是指步行、騎車、大眾運輸與電動車等低碳交通。'
-    },
-    en: {
-      question: 'What is Green Transport?',
-      options: ['Driving a green car', 'Eco-friendly low-emission travel', 'Driving only on green lights', 'Banning transport'],
-      answer: 1,
-      explanation: 'Green transport includes walking, biking, transit, and EVs.'
-    }
-  },
-  // 題目19 - 減塑
-  {
-    zh: {
-      question: '下列何者最有效減少塑膠使用？',
-      options: ['全部回收', '自備環保用品並減量', '買可分解塑膠', '焚燒處理'],
-      answer: 1,
-      explanation: '源頭減量與拒絕一次性用品是最有效的減塑方式。'
-    },
-    en: {
-      question: 'Which best reduces plastic use?',
-      options: ['Recycle all', 'Use own cups/bags and reduce', 'Buy degradable plastic', 'Burn waste'],
-      answer: 1,
-      explanation: 'Source reduction and reusable items best reduce plastic pollution.'
-    }
-  },
-  // 題目20 - 永續旅遊
-  {
-    zh: {
-      question: '「永續旅遊」的核心理念為何？',
-      options: ['只去自然區', '減少對環境與文化的衝擊並促進地方發展', '最便宜旅遊', '避免與居民互動'],
-      answer: 1,
-      explanation: '永續旅遊強調尊重當地文化與生態、促進經濟。'
-    },
-    en: {
-      question: 'What is the goal of sustainable tourism?',
-      options: ['Only visit nature.', 'Minimize impact and support local development.', 'Cheapest travel.', 'Avoid locals.'],
-      answer: 1,
-      explanation: 'Sustainable tourism aims to benefit local communities and protect environments.'
-    }
-  }
-];
-
-    const selectedQuestions = fullQuestionPool.sort(() => 0.5 - Math.random()).slice(0, 10);
-    let currentLang = 'zh';
-    let currentQuestion = 0;
-    let score = 0;
-
-    const langToggle = document.getElementById('lang-toggle');
-    const questionEl = document.getElementById('question');
-    const optionsEl = document.getElementById('options');
-    const resultEl = document.getElementById('result');
-    const ctaBtn = document.getElementById('cta-button');
-
-    langToggle.addEventListener('click', () => {
-      currentLang = currentLang === 'zh' ? 'en' : 'zh';
-      loadQuestion();
-    });
-
-    function loadQuestion() {
-      const q = selectedQuestions[currentQuestion][currentLang];
-      questionEl.textContent = `${currentQuestion + 1}. ${q.question}`;
-      optionsEl.innerHTML = '';
-      q.options.forEach((opt, idx) => {
-        const btn = document.createElement('button');
-        btn.textContent = opt;
-        btn.onclick = () => selectAnswer(idx);
-        optionsEl.appendChild(btn);
-      });
-    }
-
-    function selectAnswer(index) {
-      const q = selectedQuestions[currentQuestion][currentLang];
-      const explanation = document.createElement('p');
-      explanation.style.marginTop = '0.5rem';
-      explanation.style.fontStyle = 'italic';
-
-      if (index === q.answer) {
-        score++;
-        explanation.textContent = currentLang === 'zh' ? '✔️ 回答正確！' : '✔️ Correct answer!';
-      } else {
-        explanation.textContent = currentLang === 'zh' ? '❌ 回答錯誤。' : '❌ Incorrect answer.';
-      }
-
-      const detail = document.createElement('p');
-      detail.textContent = q.explanation;
-      detail.style.marginTop = '0.2rem';
-
-      optionsEl.innerHTML = '';
-      optionsEl.appendChild(explanation);
-      optionsEl.appendChild(detail);
-
-      setTimeout(() => {
-        currentQuestion++;
-        if (currentQuestion < selectedQuestions.length) {
-          loadQuestion();
+        if (currentLang === 'zh') {
+            if (score >= 8) message = `🌟 ESG超級玩家！\n你的得分是 ${score} / ${selectedQuestions.length}`;
+            else if (score >= 4) message = `🔍 ESG觀察家！\n你的得分是 ${score} / ${selectedQuestions.length}`;
+            else message = `🌱 ESG初心者，加油！\n你的得分是 ${score} / ${selectedQuestions.length}`;
+            ctaBtn.textContent = '了解更多群光電能永續行動';
         } else {
-          showResult();
+            if (score >= 8) message = `🌟 ESG Super Player!\nYour score: ${score} / ${selectedQuestions.length}`;
+            else if (score >= 4) message = `🔍 ESG Observer!\nYour score: ${score} / ${selectedQuestions.length}`;
+            else message = `🌱 ESG Beginner, keep going!\nYour score: ${score} / ${selectedQuestions.length}`;
+            ctaBtn.textContent = 'Learn more about Chicony Power Sustainability';
         }
-      }, 1000);
-    }
-
-    function showResult() {
-      let message = '';
-      let overview = '';
-      selectedQuestions.forEach((q, idx) => {
-        const qText = q[currentLang].question;
-        const correct = q[currentLang].options[q[currentLang].answer];
-        overview += `\n${idx + 1}. ${qText}\n✔ 正確答案：${correct}`;
-      });
-
-      if (currentLang === 'zh') {
-        if (score >= 8) message = `🌟 ESG超級玩家！\n你的得分是 ${score} / ${selectedQuestions.length}`;
-        else if (score >= 4) message = `🔍 ESG觀察家！\n你的得分是 ${score} / ${selectedQuestions.length}`;
-        else message = `🌱 ESG初心者，加油！\n你的得分是 ${score} / ${selectedQuestions.length}`;
-        ctaBtn.textContent = '了解更多群光電能永續行動';
-      } else {
-        if (score >= 8) message = `🌟 ESG Super Player!\nYour score: ${score} / ${selectedQuestions.length}`;
-        else if (score >= 4) message = `🔍 ESG Observer!\nYour score: ${score} / ${selectedQuestions.length}`;
-        else message = `🌱 ESG Beginner, keep going!\nYour score: ${score} / ${selectedQuestions.length}`;
-        ctaBtn.textContent = 'Learn more about Chicony Power Sustainability';
-      }
-
-      resultEl.textContent = message + "\n\n---\n" + overview;
-      questionEl.textContent = '';
-      optionsEl.innerHTML = '';
-      ctaBtn.style.display = 'block';
-    }
-
-    loadQuestion();
-  </script>
+     }
+ 
+     resultEl.textContent = message + (overview ? "\n\n---\n" + overview : "");
+     questionEl.textContent = '';
+     optionsEl.innerHTML = '';
+     ctaBtn.style.display = 'block';
+   }
+ 
+   loadQuestion();
+ </script>
 </body>
 </html>
